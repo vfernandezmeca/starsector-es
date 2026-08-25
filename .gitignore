@@ -1,0 +1,17 @@
+# generado
+dist/
+__pycache__/
+*.pyc
+java/clases/
+java/parchear.jar
+
+# intermedios del pipeline: solo viajan las fuentes de la traduccion
+work/*
+!work/trans.jsonl
+!work/hecho.jsonl
+!work/plan.txt
+!work/INSTRUCCIONES.md
+
+*.bak
+*.bak2
+*.log

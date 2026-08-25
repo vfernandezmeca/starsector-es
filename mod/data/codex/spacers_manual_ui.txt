@@ -1,0 +1,22 @@
+CATEGORY gm_cat_ui|manual_ui|Interfaz de usuario|mecanicas de juego
+
+CURRENT_CATEGORY gm_cat_ui
+
+BEGIN gm_basic_ui|Como usar su TriPad
+ICON manual_tripad
+==Desplazamiento de listas==
+La barra de desplazamiento se hace mas grande cuando el raton se acerca para facilitar el clic. Tambien puede mantener pulsado {{Shift}} mientras usa la rueda del raton para desplazarse mas rapido.
+
+ ==Campos de entrada==
+Puede pulsar {{Ctrl-Backspace}} para borrar una palabra y {{Shift-Backspace}} para limpiar todo el campo de entrada.
+
+==Etiquetas==
+Puede usar {{Ctrl-Click}} para seleccionar varias etiquetas o para deseleccionar una sin afectar al resto de la seleccion.
+
+==Informacion==
+Puede pulsar {{Ctrl-S}} para guardar el conjunto actual de etiquetas y {{Q}} para volver a seleccionarlas. Tambien puede pulsar {{Shift-Q}} para anadir el conjunto de etiquetas guardado a su seleccion actual. Esto solo funciona para las etiquetas de la pantalla de {{Intel}}.
+
+==Codice==
+Puede pulsar {{F2}} en cualquier lugar para abrir el Codice. En muchos casos, como en la pantalla de reajuste o al consultar una descripcion emergente, el Codice se abrira automaticamente en la entrada correspondiente.
+
+END

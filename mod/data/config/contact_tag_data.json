@@ -1,0 +1,33 @@
+{
+	"military":{
+		"name":"Militar",
+		#"color":"buttonShortcut",
+		#"putFirst":true,
+		"sort":10,
+	},
+	"trade":{
+		"name":"Comercio",
+		#"color":"buttonShortcut",
+		#"putFirst":true,
+		"sort":20,
+	},
+	"underworld":{
+		"name":"Submundo",
+		#"color":"buttonShortcut",
+		#"putFirst":true,
+		"sort":30,
+	},
+	"science":{
+		"name":"Ciencia",
+		"putFirst":true,
+		"sort":40,
+	},
+	"pather":{
+		"name":"Sendista",
+		"putFirst":true,
+		"sort":50,
+	},
+}
+
+
+

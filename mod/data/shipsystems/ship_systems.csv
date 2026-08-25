@@ -1,0 +1,71 @@
+name,id,flux/second,f/s (base rate),f/s (base cap),flux/use,f/u (base rate),f/u (base cap),cr/u,max uses,regen,charge up,active,down,cooldown,toggle,noDissipation,noHardDissipation,hardFlux,noFiring,noTurning,noStrafing,noAccel,noShield,noVent,isPhaseCloak,tags,icon
+Lanzador de bengalas,flarelauncher,,,,,,,,5,,,,,5,,,,,,,,,,,,defensive,graphics/icons/hullsys/flare_launcher.png
+Flak de capsula,canister_flak,,,,,,,,2,0.05,,,,3,,,,,,,,,,,,defensive,graphics/icons/hullsys/canister_flak.png
+Lanzador de bengalas de senuelo,flarelauncher_fighter,,,,,,,,1,0.033,,,,5,,,,,,,,,,,,defensive,graphics/icons/hullsys/decoy_flare.png
+Lanzador de bengalas de senuelo (unico),flarelauncher_single,,,,,,,,1,0.033,,,,5,,,,,,,,,,,,defensive,graphics/icons/hullsys/flare_launcher.png
+Lanzador de bengalas activo,flarelauncher_active,,,,,,0.1,,,,,,,5,,,,,,,,,,,,defensive,graphics/icons/hullsys/active_flare_launcher.png
+Propulsion de combustion,burndrive,1,,,,,,,,,2,5,1,10,TRUE,,,,,TRUE,TRUE,TRUE,TRUE,,,movement,graphics/icons/hullsys/burn_drive.png
+Propulsion de combate,combat_burn,1,,,,,,,,,1,,1,0,TRUE,,,,,,TRUE,TRUE,TRUE,,,movement,graphics/icons/hullsys/combat_burn.png
+Propulsion de plasma,microburn,1,,,,,,,2,0.1,0.5,0.5,0.5,,,,,,,,TRUE,TRUE,,,,movement,graphics/icons/hullsys/plasma_burn.png
+Micropropulsion,microburn_omega,1,,,,,,,3,0.1,0.5,0.5,0.5,,,,,,,,TRUE,TRUE,,,,"restricted, movement",graphics/icons/hullsys/burn_drive.png
+Propulsores de maniobra,maneuveringjets,,,,,,,,,,1,5,1,5,,,,,,,,,,,,movement,graphics/icons/hullsys/maneuvering_jets.png
+Estabilizador dinamico,dynamic_stabilizer,,,,,,,,,,1,5,1,5,,,,,,,,,,,,movement,graphics/icons/hullsys/maneuvering_jets.png
+Inyector de infernum,inferniuminjector,1,,,,,,,,,1,,1,1,TRUE,,,,,,,TRUE,,,,movement,graphics/icons/hullsys/infernium_injector.png
+Lanzamisiles rapidos,fastmissileracks,,,,,,0.25,,3,0.1,1,0,0,0,,,,,,,,,,,,offensive,graphics/icons/hullsys/missile_racks.png
+Escudo de fortaleza,fortressshield,,,0.025,,,,,,,1.5,,1.5,0,TRUE,,,TRUE,TRUE,,,,,,,defensive,graphics/icons/hullsys/fortress_shield.png
+Enfoque de alta energia,highenergyfocus,1,,,,,,,3,0.05,0.25,3,0.25,,,,,,,,,,,,,offensive,graphics/icons/hullsys/high_energy_focus.png
+Teletransportador de fase,phaseteleporter,,,,,,,,,,0.5,0,0.5,15,,,,TRUE,,,,,,,,movement,graphics/icons/hullsys/teleport.png
+Desplazador de fase,displacer,,,,,,,,3,0.1,0.25,,0.25,0,,TRUE,,TRUE,,,,,,,,movement,graphics/icons/hullsys/displacer.png
+Drones de defensa de punto,drone_pd,,,,,,,,20,,0,,0,0,,,,,,,,,,,,,graphics/icons/hullsys/drone_pd_high.png
+Drones de defensa de punto,drone_pd_x2,,,,,,,,10,,0,,0,0,,,,,,,,,,,,,graphics/icons/hullsys/drone_pd_mid.png
+Drones barrenadores,drone_borer,,,,,,,,15,,0,,0,0,,,,,,,,,,,,,graphics/icons/hullsys/drone_borer.png
+Drones de sensores,drone_sensor,,,,,,,,5,,0,,0,0,,,,,,,,,,,,,graphics/icons/hullsys/drone_sensor.png
+Dron exterminador,drone_terminator,,,,,,,,1,0.0333,0,,0,0,,,,,,,,,,,,,graphics/icons/hullsys/termination_sequence.png
+Alimentador de municion acelerado,ammofeed,,,,,,,,,,1,5,1,10,,,,,,,,,,,,offensive,graphics/icons/hullsys/ammo_feeder.png
+Matriz de lidar,lidararray,1,,,,,,,,,3.25,5,1,10,,,,,,,,,,,,offensive,graphics/icons/hullsys/lidar_barrage.png
+Emisor de PEM,emp,1,,,,,0.2,,,,0.5,4,0.5,3,,,,,TRUE,,,,,,,"defensive, offensive",graphics/icons/hullsys/emp_emitter.png
+Autoforja de misiles,forgevats,,,,,,0.75,,2,,1,0,0,0,,,,,,,,,,,,,graphics/icons/hullsys/missile_autoforge.png
+Campo amortiguador,damper,1,,,,,,,2,0.05,0.25,3,0.25,0,,,,,TRUE,,,,TRUE,TRUE,,"uses_damper_ai, defensive",graphics/icons/hullsys/damper_field.png
+Amortiguador de entropia,damper_omega,1,,,,,,,2,0.05,0.25,3,0.25,0,,,,,,,,,TRUE,TRUE,,"uses_damper_ai, defensive",graphics/icons/hullsys/damper_field.png
+Caparazon temporal,temporalshell,1,,,,,0.25,,,,4,10,2,10,,,,,,,,,,,,,graphics/icons/hullsys/temporal_shell.png
+Disruptor cuantico,acausaldisruptor,,,,,,0.25,,,,0.5,,1,20,,,,,,,,,,,,,graphics/icons/hullsys/quantum_disruptor.png
+Amplificador de entropia,entropyamplifier,,,,,,0.2,,,,0.5,10,1,10,,,,,,,,,,,,offensive,graphics/icons/hullsys/entropy_amplifier.png
+Matriz de interdiccion,interdictor,,,,,,0.25,,,,0.5,,0.5,20,,,,,,,,,,,,,graphics/icons/hullsys/interdictor_array.png
+Ataque de minas,mine_strike,,,,,,0.1,,5,0.2,0.25,,0.25,0,,,,,,,,,,,,offensive,graphics/icons/hullsys/mine_strike.png
+Transductor de crioflujo,cryoflux,,,,,,0.75,,,,0.5,,0.5,,TRUE,,,,,,,,,,,restricted,graphics/icons/hullsys/quantum_disruptor.png
+Despliegue de reserva,reservewing,,,,,,0.5,,,,0.1,,3,60,,,,,,,,,,,,offensive,graphics/icons/hullsys/reserve_deployment.png
+Alimentacion de punteria,targetingfeed,,,,,,0.5,,,,0.5,20,0.5,10,,,,,,,,,,,,offensive,graphics/icons/hullsys/targeting_feed.png
+Dispositivo de recuperacion,recalldevice,,,,,,0.5,,,,0.5,,0.5,30,,,,,,,,,,,,,graphics/icons/hullsys/recall_device.png
+Propulsores de plasma,plasmajets,,,,,,,,,,1,3,2,5,,,,,,,,,,,,movement,graphics/icons/hullsys/plasma_jets.png
+Dispositivo Orion,orion_device,,,,,,,,4,0.2,0,0.001,0,1,,,,,,,,,,,,movement,graphics/icons/hullsys/orion_drive.png
+Explosion de nova,nova_burst,,,,,,,,2,0.1,0.5,0.001,0,1,,,,,,,,,,,,movement,graphics/icons/hullsys/nova_burst.png
+,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Conversion de energia,energy_conversion,,,,,,0,,3,0.1,0.5,,2,0,,TRUE,,TRUE,,,,,,,,restricted,graphics/icons/hullsys/displacer.png
+Figment quiral,chiral_figment,,,,,,,,,,0.5,,0.5,30,,,,,,,,,,,,restricted,graphics/icons/hullsys/interdictor_array.png
+,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Capas de fase,phasecloak,,,,,,,,,,0.5,,0.5,2,TRUE,,TRUE,TRUE,TRUE,,,,TRUE,,TRUE,defensive,graphics/icons/hullsys/phase_cloak.png
+,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Skimmer de fase (dron),skimmer_drone,,,,,,0.05,,3,0.25,0.25,,0.25,,,TRUE,,TRUE,,,,,,,,,graphics/icons/hullsys/displacer.png
+Skimmer de fase degradado,displacer_degraded,,,,,,,,2,0.067,0.25,,0.25,0,,TRUE,,TRUE,,,,,,,,,graphics/icons/hullsys/skimmer_degraded.png
+,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Propulsion maxima,traveldrive,1,,,,,,,,,2,,2,0,TRUE,,,,TRUE,TRUE,TRUE,TRUE,TRUE,,,,graphics/icons/hullsys/burn_drive.png
+,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Nanoforja automatica de misiles pesados,forgevats_station,,,,,,0,,,,1,0,0,30,,,,,,,,,,,,,graphics/icons/hullsys/heavy_missile_autoforge.png
+Drones Merlon,drone_station_lt,,,,,,,,5,,0,,0,0,,,,,,,,,,,,,graphics/icons/hullsys/station_defense_drones_low.png
+Drones Ravelin,drone_station_mid,,,,,,,,3,,0,,0,0,,,,,,,,,,,,,graphics/icons/hullsys/station_defense_drones_mid.png
+Drones Gargoyle,drone_station_high,,,,,,,,4,,0,,0,0,,,,,,,,,,,,,graphics/icons/hullsys/station_defense_drones_high.png
+Ataque de minas,mine_strike_station,,,,,,0,,7,0.33,0.25,,0.25,0,,,,,,,,,,,,offensive,graphics/icons/hullsys/station_mine_strike.png
+Atractor de motas,mote_control,,,,,,0,,,,0.1,,0.4,,,,,,,,,,,,,"restricted, offensive, defensive",graphics/icons/hullsys/mote_attractor.png
+Secuencia de terminacion,drone_strike,,,,600,,,,,,0,0.05,0.2,0,,,,,,,,,,,,offensive,graphics/icons/hullsys/termination_sequence.png
+Latigo de energia,energy_lash,,,,,,,,,,1,,0.1,,,,,,,,,,,,,"restricted, offensive, defensive",graphics/icons/hullsys/energy_lash.png
+Desplazador,displacer_threat,,,,,,,,3,0,0.25,,0.25,0,,TRUE,,TRUE,,,,,,,,movement,graphics/icons/hullsys/displacer.png
+Modo de incursion,incursion_mode,,,,,,,,1,,1,15,1,0,,,,,,,,,,,,offensive,graphics/icons/hullsys/incursion_mode.png
+Protocolo de extraccion,extraction_protocol,,,,,,,,1,,1,5,1,0,,,,,,,,,,,,defensive,graphics/icons/hullsys/extraction_protocol.png
+Rafaga de fragmentos,fragment_volley,,,,,,,,1,,1,3,1,60,,,,,,,,,,,,offensive,graphics/icons/hullsys/fragment_volley.png
+Enjambre de construccion,construction_swarm,,,,,,,,,,0.1,,0.4,,,,,,,,,,,,,,graphics/icons/hullsys/construction_swarm.png
+,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Estocada convulsiva,convulsive_lunge,,,,,,,,,,2,3,0.5,,,,,,TRUE,,,,,,,movement,graphics/icons/hullsys/convulsive_lunge.png
+Mirada sombria,darkened_gaze,1000,,,,,,,,,2,,1,0,TRUE,TRUE,,,,,,,,,,offensive,graphics/icons/hullsys/darkened_gaze.png
+Vortice velado,shrouded_vortex,,,,,,,,,,,,,,,,,,,,,,,,,hide_in_codex,graphics/icons/hullsys/darkened_gaze.png
+Expulsion tenebrosa,tenebrous_expulsion,,,,,,,,,,0.1,1,1,20,,,,,TRUE,,,,TRUE,,,defensive,graphics/icons/hullsys/tenebrous_expulsion.png
