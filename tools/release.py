@@ -132,6 +132,10 @@ Con el mod ya copiado en mods/, entra en la carpeta "parche-menus" y:
   Windows:      doble clic en  parchear.bat
   Linux / Mac:  ./parchear.sh
 
+En Windows, si dice que no puede escribir: cierra el juego y vuelve a
+lanzarlo con boton derecho > "Ejecutar como administrador" (con el
+juego en Archivos de programa, Windows no deja tocarlo de otro modo).
+
 Encuentra el juego solo. Si lo ejecutas desde otro sitio, pasale la
 ruta:
 
