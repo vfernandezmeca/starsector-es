@@ -19172,7 +19172,7 @@ FireAll PopulateOptions",,,
 gaDevSetBairdVisible,DEVTestMenuOptions,,SetOptionColor gaDev_setBairdVisible2 gray,,gaDev_setBairdVisible2:Hacer visibles a Baird y Sebestyen,
 gaDevSetBairdVisible2,DialogOptionSelected,$option == gaDev_setBairdVisible2,"SetPersonHidden baird false
 SetPersonHidden sebestyen false
-RemoveOption gaDev_setBairdVisible2",done,,
+RemoveOption gaDev_setBairdVisible2",hecho,,
 gaDevStartGADHO,DEVTestMenuOptions,,SetOptionColor gaDev_startGADHO gray,,gaDev_startGADHO:Iniciar gaDHO - detectar anomalia en el hiperespacio,
 gaDevStartGADHO2,DialogOptionSelected,$option == gaDev_startGADHO,$global.gaDHO_didInviteDEV = true,"Hecho.
 
@@ -28577,7 +28577,7 @@ raoDevOptionHubA2,DialogOptionSelected,$option == raoDev_optionHubA2,"$global.sd
 RemoveOption raoDev_optionHubB","$global.sdtuHintedRaoInvolvement = true
 done (pero solo para este dialogo, terminara al cerrarlo)",,
 raoDevOptionHubA3,DialogOptionSelected,$option == raoDev_optionHubA3,"$option = rao_askDiktatMerc2 0
-FireBest DialogOptionSelected",done,,
+FireBest DialogOptionSelected",hecho,,
 raoDevOptionHubA4,DialogOptionSelected,$option == raoDev_optionHubA4,"$player.metStandfast = true 0
 RemoveOption raoDev_optionHubA4","player.metStandfast set to true 0
 hecho (pero solo para este dialogo, terminara cuando lo cierres)",,
@@ -30534,17 +30534,17 @@ ZGR_acknowledgeContinueDEVe:player.luddicAttitudeCynicalOrAtheistic = true 0
 ZGR_acknowledgeContinueDEVf:player.luddicAttitudeFaithfulOrPather = true 0
 ZGR_acknowledgeContinueDEV2:Continuar con el dialogo",
 ZGRacknowledgeContinueDEVa,DialogOptionSelected,$option == ZGR_acknowledgeContinueDEVa,"$player.luddicFaithfulOrChurchCom = true 0
-RemoveOption ZGR_acknowledgeContinueDEVa",done,,
+RemoveOption ZGR_acknowledgeContinueDEVa",hecho,,
 ZGRacknowledgeContinueDEVb,DialogOptionSelected,$option == ZGR_acknowledgeContinueDEVb,"$player.luddicAttitudeFaithfulOrPather  = true 0
-RemoveOption ZGR_acknowledgeContinueDEVb",done,,
+RemoveOption ZGR_acknowledgeContinueDEVb",hecho,,
 ZGRacknowledgeContinueDEVc,DialogOptionSelected,$option == ZGR_acknowledgeContinueDEVc,"$player.ethosHumanitarian = 10
-RemoveOption ZGR_acknowledgeContinueDEVc",done,,
+RemoveOption ZGR_acknowledgeContinueDEVc",hecho,,
 ZGRacknowledgeContinueDEVd,DialogOptionSelected,$option == ZGR_acknowledgeContinueDEVd,"$player.ethosMercenary = 10
-RemoveOption ZGR_acknowledgeContinueDEVd",done,,
+RemoveOption ZGR_acknowledgeContinueDEVd",hecho,,
 ZGRacknowledgeContinueDEVe,DialogOptionSelected,$option == ZGR_acknowledgeContinueDEVe,"$player.luddicAttitudeCynicalOrAtheistic = true 0
-RemoveOption ZGR_acknowledgeContinueDEVe",done,,
+RemoveOption ZGR_acknowledgeContinueDEVe",hecho,,
 ZGRacknowledgeContinueDEVf,DialogOptionSelected,$option == ZGR_acknowledgeContinueDEVf,"$player.luddicAttitudeFaithfulOrPather = true 0
-RemoveOption ZGR_acknowledgeContinueDEVf",done,,
+RemoveOption ZGR_acknowledgeContinueDEVf",hecho,,
 ZGRacknowledgeContinueDEV2,DialogOptionSelected,$option == ZGR_acknowledgeContinueDEV2,FireBest ZGRbigUps,,,
 ZGRacknowledgeContinue,DialogOptionSelected,$option == ZGR_acknowledgeContinue,"$ZGRbigUps = 0
 FireBest ZGRbigUps",,,
@@ -41107,7 +41107,7 @@ devAdonyaVisOption,PopulateOptions,"$global.isDevMode
 $market.id == fikenhild
 $menuState == main",SetOptionColor devAdonya_visOption2 gray,,100:devAdonya_visOption2:DEV hacer que Adonya sea visible en el directorio de comunicaciones,
 devAdonyaVisOption2,DialogOptionSelected,$option == devAdonya_visOption2,"SetPersonHidden adonya_coureuse false
-RemoveOption devAdonya_visOption2",Done,,
+RemoveOption devAdonya_visOption2",Hecho,,
 adonyaTalkGreeting,PickGreeting,$id == adonya_coureuse score:1000,"ShowPersonVisual true adonya_coureuse
 FireAll PopulateOptions","Tarda unos minutos en responder la comunicacion.
 

@@ -13196,7 +13196,7 @@
 {"k": "d80ce8beb0a7", "es": "\"$entity.dmi_name sends $entity.dmi_hisOrHer regards,\" the $entity.dmi_hunter snarls. \"If you don't remember $entity.dmi_himOrHer, perhaps you remember a shipment of $entity.dmi_commodity that you were entrusted with.\"\r\n\r\nThe comm link goes dead in a crackle of static."}
 {"k": "97cccb112259", "es": "\"Hola, habla Callisto Ibrahim, de Ibrahim Interstellar Transport and Salvage\".\r\n\r\nFrunce el ceño y te observa, evaluándote: \"Si buscas trabajo, ahora mismo tengo todos los pilotos que necesito, pero puedo tomar tu ID de comunicaciones por si surge algo\"."}
 {"k": "5d5c62b13869", "es": "Frunce el ceño y te observa, evaluándote.\r\n\r\n\"Hola, habla Callisto Ibrahim, de Ibrahim Interstellar Transport and Salvage\"."}
-{"k": "bb02de005436", "es": "Done"}
+{"k": "bb02de005436", "es": "Hecho"}
 {"k": "269e9711ead9", "es": "El Ciltetl"}
 {"k": "fcc841ecdf8d", "es": "El Mullam"}
 {"k": "4e9a0670823e", "es": "Los Takshaka"}
@@ -13289,9 +13289,9 @@
 {"k": "159d3e67bf45", "es": "RaoDevOptionHub1"}
 {"k": "3dfa0d8f2b19", "es": "RaoDevOptionHub2"}
 {"k": "4c56cf2706da", "es": "RaoDevOptionHub3"}
-{"k": "c3e04849535e", "es": "done"}
+{"k": "c3e04849535e", "es": "hecho"}
 {"k": "1e1030e1bfc8", "es": "Matamundos"}
-{"k": "2af995dafc71", "es": "Storage"}
+{"k": "2af995dafc71", "es": "Almacen"}
 {"k": "54992a87df6e", "es": "Agresivo"}
 {"k": "9a3fd1c625e5", "es": "Cauteloso"}
 {"k": "f33601c92b82", "es": "Temerario"}
