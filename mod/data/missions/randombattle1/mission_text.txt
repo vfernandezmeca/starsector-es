@@ -1,0 +1,6 @@
+Ubicacion: En algun lugar de la expansion Mediosolar
+Fecha: Desconocida
+
+Dirige un acorazado en esta mision, enfrentando a dos flotas generadas aleatoriamente con un potencial similar.
+
+Haz clic en la mision de la lista para volver a generar las flotas.

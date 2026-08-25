@@ -1,0 +1,23 @@
+id,name,faction,desc,script,icon,order
+open_market,"Mercado
+abierto",,"El mercado abierto. Solo se pueden comerciar bienes legales y las transacciones estan sujetas a aranceles. Hay mas mercancias disponibles cuando la estabilidad es alta.
+
+Vender suficiente cantidad de una mercancia resolvera temporalmente la escasez.",com.fs.starfarer.api.impl.campaign.submarkets.OpenMarketPlugin,,0
+black_market,"Mercado
+negro",pirates,"El mercado negro. Se puede comprar y vender cualquier cosa, y no hay aranceles. Hay mas mercancias disponibles cuando la estabilidad es baja.
+
+Vender suficiente cantidad de una mercancia resolvera temporalmente la escasez.
+
+Las transacciones en el mercado negro pueden atraer la atencion de las autoridades, lo que provoca inspecciones de carga y una reduccion de la relacion con la faccion, a menos que los intercambios se realicen con el transpondedor apagado.
+
+Realizar comercio legitimo como ""coartada"" tambien reduce la probabilidad de atraer la atencion de las autoridades.",com.fs.starfarer.api.impl.campaign.submarkets.BlackMarketPlugin,graphics/factions/black_market.png,999
+storage,Storage,player,Espacio de almacenamiento para naves y carga.,com.fs.starfarer.api.impl.campaign.submarkets.StoragePlugin,graphics/factions/storage.png,1000
+generic_military,,,"Comercio con la base militar de $theFaction.
+
+Aqui se pueden comprar y vender armas y otros equipos militares, incluso si son ilegales en el mercado abierto. Una comision y una mejor relacion con $theFaction permiten disponer de equipo de mayor categoria.
+
+Se compraran bienes ilegales localmente como parte de un programa de recompra sin preguntas.
+
+Vender suficiente cantidad de una mercancia resolvera temporalmente la escasez.",com.fs.starfarer.api.impl.campaign.submarkets.MilitarySubmarketPlugin,,100
+local_resources,"Recursos
+Existencias",,,com.fs.starfarer.api.impl.campaign.submarkets.LocalResourcesSubmarketPlugin,,200

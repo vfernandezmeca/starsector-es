@@ -1,0 +1,148 @@
+{
+	"codex":{
+		"damage_kinetic":{
+			"title":"Dano cinetico",
+			"body":"El dano cinetico es excelente contra los escudos, pero ineficaz contra el blindaje.",
+		},
+		"damage_highexplosive":{
+			"title":"Dano de alto explosivo",
+			"body":"El dano de alto explosivo es excelente contra el blindaje, pero ineficaz contra los escudos.",
+		},
+		"damage_fragmentation":{
+			"title":"Dano por fragmentacion",
+			"body":"El dano de fragmentacion es muy ineficaz tanto contra el blindaje como contra los escudos. Sin embargo, las armas que infligen dano de fragmentacion suelen tener un DPS muy alto, lo que las hace devastadoras contra objetivos con poco blindaje y sin escudos, como cazas ligeros y misiles.\\n\\nTambien puede ser muy eficaz contra una nave cuyo blindaje haya sido eliminado por los danos de combate.",
+		}, 
+		"damage_energy":{
+			"title":"Dano de energia",
+			"body":"El dano de energia es igualmente eficaz tanto contra los escudos como contra el blindaje.",
+		},
+		"damage_other":{
+			"title":"Otro tipo de dano",
+			"body":"Esta arma es especial. Aunque, en realidad, si estas viendo esto, probablemente sea un error.",
+		}, 
+	},
+	"warroom":{
+		#"fleetPoints":{
+		#	"title":"Puntos de despliegue",
+		#	"body":"Necesitas puntos de despliegue disponibles para desplegar tus reservas en combate. Retirarse o perder naves te devuelve los puntos utilizados para desplegarlas.",
+		#},
+		#"commandPoints":{
+		#	"title":"Puntos de mando",
+		#	"body":"Necesitas puntos de mando para crear asignaciones y dar ordenes directas a tu flota.\\n\\nCuando se te agoten, no podras dar mas ordenes, aunque podras ordenar a tu flota que ataque al enemigo a voluntad cancelando todas las asignaciones existentes.\\n\\nGanas algunos puntos de mando cada vez que tus fuerzas capturan un objetivo.",
+		#},
+		"pause":{
+			"title":"Pausar",
+			"body":"Pausa el juego.",
+		},
+		"play":{
+			"title":"Reanudar",
+			"body":"Reanuda el juego.",
+		},
+		"combatTime":"Tiempo transcurrido con ambas flotas en contacto.\\n\\nEl tiempo de rendimiento maximo de los refuerzos se reduce a la mitad del tiempo de combate.",
+	},
+	
+	"fleetScreen":{
+		"tooltipCaptain":{
+			"title":"Asignar capitan",
+			"body":"Asigna un capitan (tu mismo o un oficial) a esta nave. La nave se beneficiara de las habilidades del capitan.",
+		},
+		"tooltipAdmin":{
+			"title":"Asignar administrador",
+			"body":"Asigna un administrador (o a ti mismo) para gobernar esta colonia, la cual se beneficiara de las habilidades del administrador asignado.",
+		},
+		"tooltipAdminNonPlayer":{
+			"title":"Administrador",
+			"body":"Esta colonia no esta gobernada por ningun administrador de relevancia.",
+		},
+		"tooltipBuy":{
+			"title":"Comprar",
+			"body":"Compra este %s por %d creditos.",
+		},
+		"tooltipSell":{
+			"title":"Vender",
+			"body":"Vende este %s por %d creditos.",
+		},
+		"tooltipTake":{
+			"title":"Recoger",
+			"body":"Toma este %s.",
+		},
+		"tooltipGive":{
+			"title":"Almacenar",
+			"body":"Transfiere este %s de tu flota. Su preparacion de combate no cambiara mientras este en almacen.",
+		},
+		"tooltipMothball":{
+			"title":"En reserva",
+			"body":"Los %ss en reserva no pueden usarse en combate ni repararse, y no proporcionan capacidad de combustible, carga ni personal.\\n\\nPoner una nave en reserva reducira su preparacion de combate a cero; restaurarla requerira tiempo y suministros.",
+		},
+		"tooltipUnmothball":{
+			"title":"En reserva",
+			"body":"Los %ss en reserva no pueden usarse en combate ni repararse, y no proporcionan capacidad de combustible, carga ni personal.\\n\\nRestaurar la preparacion de combate de esta nave tras sacarla de reserva consumira %s suministros a lo largo de %s dia(s).",
+		},
+		"tooltipScuttle":{
+			"title":"Barrenar",
+			"body":"Desmantela este %s para obtener lo que sea util, ganando %d suministros, %d combustible y %d maquinaria pesada.",
+		},
+		"tooltipSuspendRepairs":{
+			"title":"Suspender reparaciones y recuperacion",
+			"body":"Impide que este %s realice reparaciones o recupere la preparacion de combate. Si se permite que proceda, las reparaciones completas y la recuperacion de PC consumiran aproximadamente %s suministros a lo largo de %s dias.",
+		},
+		"tooltipSuspendRepairsNotNeeded":{
+			"title":"Suspender reparaciones y recuperacion",
+			"body":"Impide que este %s realice reparaciones o recupere la preparacion de combate. Este %s no requiere reparaciones ni recuperacion de PC en este momento.",
+		},
+		"tooltipRefit":{
+			"title":"Reajustar",
+			"body":"Cambia las armas y los mods de casco equipados en esta nave.",
+		},
+		"tooltipLogisticalPriority":{
+			"title":"Prioridad logistica",
+			"body":"Los %ss con prioridad logistica tienen la primera eleccion de la tripulacion y los suministros disponibles para las reparaciones.",
+		},
+		"tooltipCrewElite":{
+			"title":"Elite",
+			"body":"Asigna a este %s el mejor personal disponible.",
+		},
+		"tooltipCrewVeteran":{
+			"title":"Veterano",
+			"body":"Si es posible, asigna a este %s solo tripulacion veterana o inferior.", 
+		},
+		"tooltipCrewRegular":{
+			"title":"Regular",
+			"body":"Si es posible, asigna a este %s solo tripulacion regular o inferior.",
+		},
+		"tooltipCrewGreen":{
+			"title":"Nuevo",
+			"body":"Si es posible, equipe este %s solo con tripulacion con buena salud.",
+		},
+		"tooltipCrewBar":{
+			"title":"",
+			"body":"Fraccion de tripulacion en este %s.",
+		},
+	},
+	"logistics":{
+		"marines":"Numero de infantes de marina en la flota.",
+		"crew":"Numero de tripulantes en la flota y la cantidad necesaria para cumplir con los requisitos minimos en todas las naves de la flota.",
+		"supplies":"Suministros disponibles y consumo diario de suministros.",
+		"credits":"Creditos disponibles.",
+	},
+	"misc":{
+		"jumpPointNormal":"Los puntos de salto pueden usarse para transitar entre el hiperespacio y el espacio normal. Algunos puntos de salto tambien conducen a otros destinos.",
+		"jumpPointStar":"El pozo gravitatorio de una estrella es lo suficientemente profundo como para permitir una salida unidireccional desde el hiperespacio. Sin embargo, utilizar uno es extremadamente dificil y peligroso.",
+		"jumpPointGasGiant":"El pozo gravitatorio de un gigante gaseoso suele ser lo bastante profundo como para permitir una salida unidireccional desde el hiperespacio.",
+	},
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

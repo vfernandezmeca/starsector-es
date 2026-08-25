@@ -1,0 +1,22 @@
+{
+	"id":"carrier_group",
+	"governingAptitude":"leadership",
+	"compressHullmods":false,
+	#"scope":ALL_CARRIERS,
+	"scope":CUSTOM,
+	"scopeStr":"todas las naves con hangares de caza",
+	"scope2":CUSTOM,
+	"scopeStr2":"aumenta el efecto de las naves con oficiales, incluido el buque insignia",
+	#"scopeStr":"todas las naves con hangares de caza no integrados",
+	"effectGroups":[
+		{
+			"requiredSkillLevel":1,
+			"effectBasedOnLevel":false,
+			"effects":[
+				{"type":"ALL_SHIPS_IN_FLEET", "script":"com.fs.starfarer.api.impl.campaign.skills.CarrierGroup$Level1"},
+				{"type":"HULLMOD_UNLOCK", "hullmods":{"converted_hangar":1,"expanded_deck_crew":1, "converted_fighterbay":1}},
+				
+			]
+		},
+	],
+}
