@@ -17,7 +17,7 @@ INFO = {
     "author": "vfernandezmeca",
     "utility": "true",
     "totalConversion": "false",
-    "version": "0.3.1",
+    "version": "0.3.2",
     "description": ("Traduccion al espanol de Starsector. Se instala como mod, "
                     "no sobrescribe los archivos originales del juego."),
     "gameVersion": "0.98a-RC8",

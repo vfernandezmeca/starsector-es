@@ -7,11 +7,13 @@ parte delicada.
 
 Formato, una linea por registro, UTF-8:
     C <TAB> jar <TAB> ruta/de/la/Clase.class
-    S <TAB> indice del constant pool <TAB> traduccion
+    S <TAB> indice del constant pool <TAB> traduccion <TAB> texto original
 
-Se manda el indice, no el texto original: asi el parcheador no tiene que
-decidir que entrada Utf8 es texto y cual es un nombre de metodo. Esa
-decision ya esta tomada aqui.
+Se manda el indice porque asi el parcheador no tiene que decidir que entrada
+Utf8 es texto y cual es un nombre de metodo: esa decision ya esta tomada aqui.
+Y va tambien el texto original porque el indice solo vale para el jar que se
+analizo; si el usuario tiene otro build, ese mismo indice apunta a un nombre
+de metodo. El parcheador comprueba el texto y, si no cuadra, salta la clase.
 
 Escapes en los textos: \\ \t \n \r
 """
@@ -31,11 +33,11 @@ def escapa(s):
              .replace("\n", "\\n").replace("\r", "\\r"))
 
 
-def main():
+def main(salida=SALIDA):
     mapa = parchea.mapa_desde_trabajo()
     claves = {s.encode("utf-8") for s in jar_extrae.identificadores()}
     total = clases = 0
-    with open(SALIDA, "w", encoding="utf-8", newline="\n") as out:
+    with open(salida, "w", encoding="utf-8", newline="\n") as out:
         for jar in parchea.JARS:
             ruta = os.path.join(parchea.JUEGO, jar)
             with zipfile.ZipFile(parchea.copia(ruta)) as z:
@@ -59,12 +61,16 @@ def main():
                     clases += 1
                     out.write("C\t%s\t%s\n" % (jar, i.filename))
                     for idx in sorted(presentes):
-                        out.write("S\t%d\t%s\n" % (
-                            idx, escapa(mapa[d[slice(*utf8[idx])]].decode("utf-8"))))
+                        viejo = d[slice(*utf8[idx])]
+                        out.write("S\t%d\t%s\t%s\n" % (
+                            idx, escapa(mapa[viejo].decode("utf-8")),
+                            escapa(viejo.decode("utf-8"))))
                         total += 1
-    print(f"{clases} clases, {total} sustituciones -> {SALIDA}")
-    print(f"{os.path.getsize(SALIDA)} bytes")
+    print(f"{clases} clases, {total} sustituciones -> {salida}")
+    print(f"{os.path.getsize(salida)} bytes")
 
 
 if __name__ == "__main__":
-    main()
+    # el jar de Windows es otra ofuscacion: su plan se genera aparte
+    #   STARSECTOR=~/Games/starsector-win python3 tools/plan.py work/plan-windows.txt
+    main(sys.argv[1] if len(sys.argv) > 1 else SALIDA)

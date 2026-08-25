@@ -15,9 +15,14 @@ import java.util.zip.*;
  */
 public class Parchear {
 
-    /** Sustituciones de una clase: indice de constant pool -> texto nuevo. */
+    /** Sustituciones de una clase: indice de constant pool -> texto. */
     static class Clase {
         final Map<Integer, String> cambios = new HashMap<Integer, String>();
+        /** Lo que tiene que haber ahora en ese indice. Si no, el jar no es
+         *  el que se analizo y escribir seria reescribir otra cosa. */
+        final Map<Integer, String> originales = new HashMap<Integer, String>();
+        /** Cuantas no cuadraron en el jar que tiene delante. */
+        int saltadas;
     }
 
     public static void main(String[] args) throws Exception {
@@ -43,13 +48,34 @@ public class Parchear {
             return;
         }
 
-        File plan = new File(Parchear.class.getProtectionDomain()
+        File dir = new File(Parchear.class.getProtectionDomain()
                 .getCodeSource().getLocation().toURI()).getParentFile();
-        Map<String, Map<String, Clase>> porJar = leerPlan(new File(plan, "plan.txt"));
+        File[] ficheros = dir.listFiles(new FilenameFilter() {
+            public boolean accept(File d, String n) {
+                return n.startsWith("plan") && n.endsWith(".txt");
+            }
+        });
+        if (ficheros == null || ficheros.length == 0) {
+            throw new FileNotFoundException("Falta plan.txt junto al jar");
+        }
+        Arrays.sort(ficheros);
+        Map<File, Map<String, Map<String, Clase>>> planes =
+                new LinkedHashMap<File, Map<String, Map<String, Clase>>>();
+        Set<String> jars = new LinkedHashSet<String>();
+        for (File f : ficheros) {
+            Map<String, Map<String, Clase>> p = leerPlan(f);
+            planes.put(f, p);
+            jars.addAll(p.keySet());
+        }
 
         int total = 0;
-        for (Map.Entry<String, Map<String, Clase>> e : porJar.entrySet()) {
-            total += parchearJar(new File(raiz, e.getKey()), e.getValue());
+        for (String nombre : jars) {
+            File jar = new File(raiz, nombre);
+            if (!jar.isFile()) continue;
+            File plan = elPlanDe(jar, nombre, planes);
+            if (plan == null) continue;
+            System.out.println("  " + nombre + ": " + plan.getName());
+            total += parchearJar(jar, planes.get(plan).get(nombre));
         }
         System.out.println();
         System.out.println(total + " literales traducidos.");
@@ -70,7 +96,7 @@ public class Parchear {
             Clase actual = null;
             while ((linea = r.readLine()) != null) {
                 if (linea.isEmpty()) continue;
-                String[] p = linea.split("\t", 3);
+                String[] p = linea.split("\t", 4);
                 if (p[0].equals("C")) {
                     Map<String, Clase> clases = porJar.get(p[1]);
                     if (clases == null) {
@@ -80,13 +106,60 @@ public class Parchear {
                     actual = new Clase();
                     clases.put(p[2], actual);
                 } else if (p[0].equals("S") && actual != null) {
-                    actual.cambios.put(Integer.parseInt(p[1]), desescapar(p[2]));
+                    if (p.length < 4) {
+                        throw new IOException("plan.txt viejo: le falta el texto "
+                                + "original. Usa el plan que viene con este jar.");
+                    }
+                    int idx = Integer.parseInt(p[1]);
+                    actual.cambios.put(idx, desescapar(p[2]));
+                    actual.originales.put(idx, desescapar(p[3]));
                 }
             }
         } finally {
             r.close();
         }
         return porJar;
+    }
+
+    /**
+     * Windows y Linux traen ofuscaciones distintas de starfarer_obf.jar: los
+     * mismos menus viven en clases con otro nombre. Se manda un plan por
+     * build y decide el jar, no el sistema operativo: el plan bueno es el que
+     * mas clases suyas encuentra dentro.
+     */
+    static File elPlanDe(File jar, String nombre,
+                         Map<File, Map<String, Map<String, Clase>>> planes)
+            throws IOException {
+        Set<String> dentro = nombresDe(copia(jar));
+        File mejor = null;
+        int mejorN = -1;
+        for (Map.Entry<File, Map<String, Map<String, Clase>>> e : planes.entrySet()) {
+            Map<String, Clase> clases = e.getValue().get(nombre);
+            if (clases == null) continue;
+            int n = 0;
+            for (String c : clases.keySet()) {
+                if (dentro.contains(c)) n++;
+            }
+            // >= y no >: en empate gana el ultimo, y plan.txt ordena detras
+            // de plan-loquesea.txt. Cuando los dos valen, el generico
+            if (n >= mejorN) {
+                mejorN = n;
+                mejor = e.getKey();
+            }
+        }
+        return mejor;
+    }
+
+    static Set<String> nombresDe(File jar) throws IOException {
+        Set<String> out = new HashSet<String>();
+        ZipFile z = new ZipFile(jar);
+        try {
+            Enumeration<? extends ZipEntry> it = z.entries();
+            while (it.hasMoreElements()) out.add(it.nextElement().getName());
+        } finally {
+            z.close();
+        }
+        return out;
     }
 
     static String desescapar(String s) {
@@ -120,6 +193,7 @@ public class Parchear {
         File orig = copia(jar);
         File tmp = new File(jar.getPath() + ".tmp");
         int cambios = 0;
+        Set<String> vistas = new HashSet<String>();
 
         ZipFile ent = new ZipFile(orig);
         ZipOutputStream sal = new ZipOutputStream(new BufferedOutputStream(
@@ -131,11 +205,17 @@ public class Parchear {
                 byte[] datos = leer(ent.getInputStream(e), (int) Math.max(e.getSize(), 0));
                 Clase c = clases.get(e.getName());
                 if (c != null) {
-                    byte[] nuevo = reescribir(datos, c.cambios);
+                    vistas.add(e.getName());
+                    byte[] nuevo = reescribir(datos, c);
                     if (nuevo != null) {
                         datos = nuevo;
-                        cambios += c.cambios.size();
-                    } else {
+                        cambios += c.cambios.size() - c.saltadas;
+                    }
+                    if (c.saltadas > 0) {
+                        System.err.println("  aviso: " + e.getName() + ": "
+                                + c.saltadas + " de " + c.cambios.size()
+                                + " cadenas no cuadran (jar distinto)");
+                    } else if (nuevo == null) {
                         System.err.println("  aviso: " + e.getName() + " sin tocar");
                     }
                 }
@@ -159,6 +239,19 @@ public class Parchear {
         }
         if (!jar.delete() || !tmp.renameTo(jar)) {
             throw new IOException("No se pudo reemplazar " + jar);
+        }
+        // un jar de otro build tiene las clases con otro nombre: el plan
+        // apunta a sitios que ahi no existen y no salta ningun aviso
+        int faltan = 0, perdidas = 0;
+        for (Map.Entry<String, Clase> e : clases.entrySet()) {
+            if (!vistas.contains(e.getKey())) {
+                faltan++;
+                perdidas += e.getValue().cambios.size();
+            }
+        }
+        if (faltan > 0) {
+            System.err.println("  aviso: clases del plan que no estan en este"
+                    + " jar: " + faltan + " (" + perdidas + " cadenas sin traducir)");
         }
         System.out.println("  " + jar.getName() + ": " + cambios + " literales");
         return cambios;
@@ -193,14 +286,20 @@ public class Parchear {
     }
 
     /**
-     * Sustituye las entradas Utf8 indicadas. Devuelve null si la clase no
-     * parece un class file valido, para dejarla intacta en vez de romperla.
+     * Sustituye las entradas Utf8 indicadas cuyo texto sea el que el plan
+     * daba por supuesto. Las que no cuadran se dejan como estan y se cuentan
+     * en clase.saltadas: si el usuario tiene otro build, una cadena movida no
+     * puede costar la clase entera.
+     *
+     * Devuelve null si la clase no parece un class file valido, para dejarla
+     * intacta en vez de romperla.
      */
-    static byte[] reescribir(byte[] d, Map<Integer, String> cambios) {
+    static byte[] reescribir(byte[] d, Clase c) {
         if (d.length < 10 || (d[0] & 0xff) != 0xca || (d[1] & 0xff) != 0xfe
                 || (d[2] & 0xff) != 0xba || (d[3] & 0xff) != 0xbe) {
             return null;
         }
+        c.saltadas = 0;
         int total = u2(d, 8);
         int p = 10, i = 1;
         // (inicio, fin) del texto de cada entrada que hay que cambiar
@@ -211,15 +310,18 @@ public class Parchear {
             int tag = d[p] & 0xff;
             int largo = tamano(d, p, tag);
             if (largo < 0) return null;
-            if (tag == 1 && cambios.containsKey(i)) {
+            if (tag == 1 && c.cambios.containsKey(i)) {
                 int ini = p + 3, fin = p + 3 + u2(d, p + 1);
-                tramos.add(new int[]{ini, fin});
-                textos.add(cambios.get(i));
+                if (coincide(d, ini, fin, c.originales.get(i))) {
+                    tramos.add(new int[]{ini, fin});
+                    textos.add(c.cambios.get(i));
+                }
             }
             p += 1 + largo;
             i += (tag == 5 || tag == 6) ? 2 : 1;
         }
-        if (tramos.size() != cambios.size()) return null;   // indices que no cuadran
+        // lo que no cuadro: texto distinto, o un indice que ahi ya no es Utf8
+        c.saltadas = c.cambios.size() - tramos.size();
 
         ByteArrayOutputStream out = new ByteArrayOutputStream(d.length + 4096);
         int cursor = 0;
@@ -236,6 +338,17 @@ public class Parchear {
         byte[] res = out.toByteArray();
         // el resultado tiene que seguir siendo un class file recorrible
         return recorrible(res) ? res : null;
+    }
+
+    /** El texto que hay en el jar es el que el plan dio por supuesto. */
+    static boolean coincide(byte[] d, int ini, int fin, String esperado) {
+        if (esperado == null) return false;
+        byte[] e = esperado.getBytes(StandardCharsets.UTF_8);
+        if (fin - ini != e.length) return false;
+        for (int k = 0; k < e.length; k++) {
+            if (d[ini + k] != e[k]) return false;
+        }
+        return true;
     }
 
     static boolean recorrible(byte[] d) {

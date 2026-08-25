@@ -39,6 +39,9 @@ DENTRO = "Starsector Espanol"
 PIEZAS = [
     (os.path.join(RAIZ, "java", "parchear.jar"), "parche-menus/parchear.jar"),
     (os.path.join(RAIZ, "work", "plan.txt"), "parche-menus/plan.txt"),
+    # Windows trae otra ofuscacion de starfarer_obf.jar: su plan va aparte y
+    # el parcheador elige el que cuadre con el jar que tenga delante
+    (os.path.join(RAIZ, "work", "plan-windows.txt"), "parche-menus/plan-windows.txt"),
     (os.path.join(RAIZ, "parche-menus", "parchear.sh"), "parche-menus/parchear.sh"),
     (os.path.join(RAIZ, "parche-menus", "parchear.bat"), "parche-menus/parchear.bat"),
 ]
@@ -86,7 +89,7 @@ def main():
 
     mb = os.path.getsize(destino) / 1024 / 1024
     print(f"{nombre}.zip  ({mb:.1f} MB)")
-    print(f"  una sola carpeta: {n_mod} archivos del mod + LEEME + 4 del parche")
+    print(f"  una sola carpeta: {n_mod} archivos del mod + LEEME + {len(PIEZAS)} del parche")
     print(f"  -> {destino}")
 
 

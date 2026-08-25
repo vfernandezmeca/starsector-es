@@ -18,13 +18,13 @@ Ultima sesion: 25 ago 2026.
 | Mod | 20.606 aplicadas, 16 sin traducir |
 | Jar | 10.754 literales reescritos |
 | Lista de intocables | 21.009 cadenas |
-| Tests | 80 |
+| Tests | 88 |
 | Auditoria y verificacion | limpias |
-| Paquete | `dist/Starsector-Espanol-0.3.0.zip` (1,9 MB) |
+| Paquete | `dist/Starsector-Espanol-0.3.2.zip` (2,3 MB) |
 
 El zip lo monta `tools/release.py`: **una sola carpeta** que arrastrar a
-`mods/`, con el `LEEME.txt` y `parche-menus/` (parchear.jar, plan.txt y los
-dos lanzadores) dentro del propio mod. Los lanzadores encuentran el juego
+`mods/`, con el `LEEME.txt` y `parche-menus/` (parchear.jar, los dos planes
+y los dos lanzadores) dentro del propio mod. Los lanzadores encuentran el juego
 solos si el mod ya esta instalado. No lleva jars parcheados: no se pueden
 redistribuir.
 
@@ -181,7 +181,8 @@ python3 tools/verifica_jar.py                 # ni esto
 python3 tools/package.py
 
 # 4. publicar (el parcheador que se reparte es Java, no Python)
-python3 tools/plan.py
+python3 tools/plan.py                         # plan de Linux
+STARSECTOR=~/Games/starsector-win python3 tools/plan.py work/plan-windows.txt
 cd java && javac --release 8 -d clases Parchear.java \
   && jar cfm parchear.jar manifest.txt -C clases . && cd ..
 python3 tools/release.py
@@ -190,13 +191,29 @@ python3 tools/release.py
 ## El parcheador que se distribuye
 
 Python no viaja. El analisis (que es texto y que identificador) se hace aqui
-una vez y se congela en `work/plan.txt`, que lleva **indices de constant
-pool**, no texto que buscar:
+una vez y se congela en el plan, que lleva **indices de constant pool** y, al
+lado, el texto que tiene que haber en ese indice:
 
 ```
 C  starfarer_obf.jar  com/fs/starfarer/BaseGameState.class
-S  186                Bucle principal en
+S  186                Bucle principal en        Main loop in
 ```
+
+El indice evita reimplementar el detector en Java. El texto original es el
+seguro: el indice solo vale para el jar exacto que se analizo, y escribir a
+ciegas en otro build cae encima de un nombre de metodo. Eso no da error,
+cuelga el launcher.
+
+**Hay un plan por build.** `starfarer_obf.jar` viene ofuscado por separado en
+cada sistema: entre Linux y Windows hay 1.221 clases renombradas y 1.267 mas
+con otro contenido. `starfarer.api.jar` es identico en los dos. Se publican
+`plan.txt` y `plan-windows.txt`, y **decide el jar, no el sistema operativo**:
+`Parchear` carga todos los `plan*.txt` que encuentra al lado y se queda con el
+que mas clases suyas ve dentro del jar (en empate, `plan.txt`).
+
+Nada se aplica a medias y en silencio: si un texto no coincide se salta esa
+cadena (no la clase entera), y las clases del plan que no estan en el jar se
+cuentan y se avisan. Un parcheo bueno son 10.754 cadenas y cero avisos.
 
 `java/Parchear.java` solo aplica ese plan. Compilado con `--release 8` para
 que corra con la JRE que trae el juego (`jre_linux`, `jre`), asi que el
@@ -238,3 +255,13 @@ encontro, y eso localiza el fallo en un minuto. Buscar la cadena original con
 6. **Nada sustituye a abrir el juego.** Siete fallos del parche, y los siete
    los encontro el usuario jugando. Lo unico que escala es convertir cada uno
    en un invariante automatico.
+
+7. **El jar no es el mismo en todos los sistemas.** El parche colgaba el
+   launcher en Windows. La causa: `starfarer_obf.jar` esta ofuscado por
+   separado en cada build, asi que los indices del plan apuntaban a nombres de
+   metodo. Lo caro no fue el fallo, fue el silencio: el parcheador aplicaba
+   sin comprobar nada y decia "8.673 literales traducidos" tan tranquilo.
+   Tres rondas con el usuario para sacarle el numero real. **Una herramienta
+   que no sabe decir lo que no ha hecho miente por omision**: ahora verifica
+   el texto antes de escribir, salta solo lo que no cuadra, y cuenta en voz
+   alta las clases que no encuentra.

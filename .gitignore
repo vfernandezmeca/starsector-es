@@ -10,6 +10,7 @@ work/*
 !work/trans.jsonl
 !work/hecho.jsonl
 !work/plan.txt
+!work/plan-windows.txt
 !work/INSTRUCCIONES.md
 
 *.bak
