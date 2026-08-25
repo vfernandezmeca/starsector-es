@@ -14,6 +14,7 @@ JUEGO = os.environ.get("STARSECTOR", "/home/victor/Games/starsector")
 JARS = ["starfarer_obf.jar", "starfarer.api.jar"]
 ELEM = re.compile(r"<([A-Za-z][\w.$-]*)[ />]")
 MAYUS = re.compile(rb"^[A-Z0-9_]{2,}$")
+REGEX = re.compile(rb"^\(\?[a-zA-Z]*[):]")
 
 
 def pares():
@@ -122,12 +123,42 @@ def identificadores_sin_tocar():
     return malas
 
 
+def regex_intactos():
+    """Un literal que empieza por (?i) o (?is) no es texto, es una expresion
+    regular. `util/Oo0O` las pasa a String.replaceAll para abreviar nombres de
+    arma que no caben. Si la traduccion se come el modificador, el juego peta
+    al entrar en combate: 'Unknown inline modifier near index 3'."""
+    malas = []
+    for j, z0, z1 in pares():
+        for n in z1.namelist():
+            if not n.endswith(".class"):
+                continue
+            try:
+                d0, d1 = z0.read(n), z1.read(n)
+                u0 = jarloc._analiza(d0)[0]
+                u1 = jarloc._analiza(d1)[0]
+            except Exception:
+                continue
+            for i, tramo in u0.items():
+                antes = d0[slice(*tramo)]
+                if not antes.startswith(b"(?") or i not in u1:
+                    continue
+                despues = d1[slice(*u1[i])]
+                a, b = REGEX.match(antes), REGEX.match(despues)
+                if a and (b is None or a.group() != b.group()):
+                    malas.append("%s:%s %s -> %s" % (
+                        j, n, antes.decode("utf8", "ignore"),
+                        despues.decode("utf8", "ignore")))
+    return malas
+
+
 COMPROBACIONES = [
     ("clases sin corromper", clases_parsean),
     ("constantes y enums intactos", constantes_intactas),
     ("alias de las partidas guardadas", alias_de_guardado),
     ("identificadores sin traducir", identificadores_sin_tocar),
     ("material de clave sin tocar", material_de_clave_intacto),
+    ("expresiones regulares intactas", regex_intactos),
 ]
 
 

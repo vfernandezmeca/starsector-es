@@ -4237,7 +4237,7 @@
 {"k": "5df7a7ca11d3", "es": "(?i)prismático"}
 {"k": "9714cb7d02dc", "es": "(?i)criogénico"}
 {"k": "ed3d26253d4c", "es": "Battlecarrier"}
-{"k": "7199fe78da3c", "es": "Artillería"}
+{"k": "7199fe78da3c", "es": "(?i)artillería"}
 {"k": "1fc7ef3467c2", "es": "(?i)disruptor"}
 {"k": "81dbe3dc50bd", "es": "(?i)estratégico"}
 {"k": "3b58f8220849", "es": "Battlecruiser"}
@@ -4260,7 +4260,7 @@
 {"k": "87e910526f4e", "es": "(?i)de gravedad"}
 {"k": "e4c158fd446f", "es": "(?i)escáner"}
 {"k": "867dc6ece4fb", "es": "(?i)bombardeo"}
-{"k": "e7100eff5991", "es": "Torpedo"}
+{"k": "e7100eff5991", "es": "(?i)torpedo"}
 {"k": "c6fa8ebbb1e7", "es": "(?i)psiónico"}
 {"k": "43b8fcee2357", "es": "(?i)batería"}
 {"k": "a209cea6e489", "es": "(?i)de asalto"}
@@ -4275,7 +4275,7 @@
 {"k": "f70fe7538cc6", "es": "(?i)carga"}
 {"k": "12518c3bd6b1", "es": "(?i)mortero"}
 {"k": "c5c5b059efd4", "es": "Autocannón"}
-{"k": "1f4d9638cddd", "es": "Xraser"}
+{"k": "1f4d9638cddd", "es": "(?i)xraser"}
 {"k": "ec4218bf67e8", "es": "(?i)cohete"}
 {"k": "093efa3d27bf", "es": "Battleship"}
 {"k": "ed8dea1ed30e", "es": "(?i)cañón"}
@@ -11783,7 +11783,7 @@
 {"k": "8a4acc566a41", "es": "(?i)sistema de armas de corto alcance"}
 {"k": "40447356f63a", "es": "(?i)pulso electromagnético"}
 {"k": "a581171458e0", "es": "(?i)cañón de denegación de área"}
-{"k": "ad98decca5ee", "es": "(?mente)ametralladora ligera"}
+{"k": "ad98decca5ee", "es": "(?i)ametralladora ligera"}
 {"k": "57dfd5c1c85a", "es": "(?i)ametralladora pesada"}
 {"k": "2d503a99aea2", "es": "Cascos y armas de nave"}
 {"k": "63015cae271b", "es": "(?i)ametralladora ligera"}

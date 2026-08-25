@@ -56,6 +56,10 @@ Solo `parchea.py`, `jar_extrae.py` y `verifica_jar.py` respetan `$STARSECTOR`.
 `work/catalog.jsonl` — una linea por cadena unica: `k` (hash id), `s` (ingles),
 `ctx` (`ruta#columna`), `h` (id de fila). Es la entrada de todo.
 
+`work/mapa_jar.json` — cache del mapa ingles->espanol de las cadenas de jar,
+construido desde `catalog.jsonl` + `trans.jsonl`. **Si existe se usa tal cual**:
+tocar `trans.jsonl` sin borrarlo no cambia nada. Borrarlo lo reconstruye.
+
 `work/trans.jsonl` — traducciones **con tildes**, salida de `batch.py collect`.
 `work/hecho.jsonl` — lo promocionado a mano; `batch.py make` lo resta del
 catalogo para no re-traducir y `collect` lo re-inyecta como base. Ambos van al
@@ -72,7 +76,7 @@ escrito a mano (`EspanolTokens.java`, `EspanolModPlugin.java`, que resuelven
 ## Lo dificil: saber que NO traducir
 
 Traducir un identificador no da un error de traduccion: el juego no arranca, o
-falla en silencio. `ESTADO.md` documenta 7 roturas del parche y 4 del mod, cada
+falla en silencio. `ESTADO.md` documenta 8 roturas del parche y 4 del mod, cada
 una convertida en un invariante automatico. Leelo antes de tocar el detector.
 
 - La lista de intocables (21.009 cadenas) se **deriva** de seis evidencias del

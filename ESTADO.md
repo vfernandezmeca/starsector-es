@@ -16,11 +16,11 @@ Ultima sesion: 25 ago 2026.
 |---|---|
 | Catalogo | 26.198 cadenas (16.053 de datos, 10.145 de los jar) |
 | Mod | 20.606 aplicadas, 16 sin traducir |
-| Jar | 10.754 literales reescritos |
+| Jar | 10.752 literales reescritos |
 | Lista de intocables | 21.009 cadenas |
 | Tests | 88 |
 | Auditoria y verificacion | limpias |
-| Paquete | `dist/Starsector-Espanol-0.3.2.zip` (2,3 MB) |
+| Paquete | `dist/Starsector-Espanol-0.3.3.zip` (2,3 MB) |
 
 El zip lo monta `tools/release.py`: **una sola carpeta** que arrastrar a
 `mods/`, con el `LEEME.txt` y `parche-menus/` (parchear.jar, los dos planes
@@ -42,7 +42,7 @@ sus clases van en un classloader hijo y los menus ya los cargo el padre.
 
 ```bash
 python3 tools/parchea.py              # aplica (siempre desde el .orig)
-python3 tools/verifica_jar.py         # cinco invariantes
+python3 tools/verifica_jar.py         # seis invariantes
 python3 tools/parchea.py --restaura   # vuelve atras
 ```
 
@@ -68,7 +68,7 @@ propio juego, y cada una se anadio despues de una rotura real:
 clase y se consulta en otra; si se traduce solo donde se detecta, las dos
 dejan de coincidir. Ese error de diseno costo un crash entero.
 
-## Los siete fallos del parche, y su patron
+## Los ocho fallos del parche, y su patron
 
 Todos la misma forma: **el juego busca una cadena por texto exacto y yo no
 sabia que ese sitio existia**. Ninguno se veia sin arrancar el juego.
@@ -95,6 +95,14 @@ sabia que ese sitio existia**. Ninguno se veia sin arrancar el juego.
    el literal a cuatro instrucciones de la llamada; la ventana era de dos,
    calibrada para `equals`. Ahora hay dos ventanas.
 
+8. **Expresiones regulares.** `util/Oo0O` guarda ~100 pares (regex,
+   abreviatura) y los pasa a `String.replaceAll` para acortar nombres de arma
+   que no caben en la UI de combate. El traductor se comio el `(?i)` de cuatro
+   de ellas; una quedo como `(?mente)ametralladora ligera`. Petaba al entrar
+   en combate: `Unknown inline modifier near index 3`. Traducirlas es
+   correcto (tienen que casar con los nombres en espanol), lo que no se toca
+   es el modificador.
+
 `verifica_jar.py` es lo que quedo de todo esto. Corre contra la instalacion
 real y las partidas guardadas:
 
@@ -104,6 +112,7 @@ constantes y enums intactos
 alias de las partidas guardadas      <- 718 nombres de las partidas reales
 identificadores sin traducir
 material de clave sin tocar
+expresiones regulares intactas       <- el prefijo (?i) sobrevive a la traduccion
 ```
 
 ## Los cuatro crashes del mod (anteriores, ya cerrados)
@@ -213,7 +222,7 @@ que mas clases suyas ve dentro del jar (en empate, `plan.txt`).
 
 Nada se aplica a medias y en silencio: si un texto no coincide se salta esa
 cadena (no la clase entera), y las clases del plan que no estan en el jar se
-cuentan y se avisan. Un parcheo bueno son 10.754 cadenas y cero avisos.
+cuentan y se avisan. Un parcheo bueno son 10.752 cadenas y cero avisos.
 
 `java/Parchear.java` solo aplica ese plan. Compilado con `--release 8` para
 que corra con la JRE que trae el juego (`jre_linux`, `jre`), asi que el
@@ -252,9 +261,9 @@ encontro, y eso localiza el fallo en un minuto. Buscar la cadena original con
    suelta en clase de carga (perdia 103), y el cruce de las dos (perdia 3). La
    buena exige dos evidencias a la vez.
 
-6. **Nada sustituye a abrir el juego.** Siete fallos del parche, y los siete
-   los encontro el usuario jugando. Lo unico que escala es convertir cada uno
-   en un invariante automatico.
+6. **Nada sustituye a abrir el juego.** Ocho fallos del parche, y los ocho
+   los encontro alguien jugando. Lo unico que escala es convertir cada uno en
+   un invariante automatico.
 
 7. **El jar no es el mismo en todos los sistemas.** El parche colgaba el
    launcher en Windows. La causa: `starfarer_obf.jar` esta ofuscado por

@@ -5293,7 +5293,6 @@ S	61	(?i)lanzador	(?i)launcher
 S	63	lanzador	lchr
 S	69	(?i)cohete	(?i)rocket
 S	71	cohete	rkt
-S	73	Torpedo	(?i)torpedo
 S	75	torp.	trp
 S	77	(?i)autocannon	(?i)autocannon
 S	81	(?i)ametralladora	(?i)machine gun
@@ -5388,7 +5387,7 @@ S	389	Cascos de nave	Ship Hulls
 S	473	(?i)acelerador	(?i)accelerator
 S	477	(?i)amplificador	(?i)amplifier
 S	481	(?i)canon de denegacion de area	(?i)area denial cannon
-S	485	Artilleria	(?i)artillery
+S	485	(?i)artilleria	(?i)artillery
 S	487	artilleria	arty
 S	489	(?i)atomico	(?i)atomic
 S	491	atomico	atom
@@ -5428,7 +5427,7 @@ S	593	(?i)ametralladora pesada	(?i)hv machine gun
 S	595	(?i)ametralladora pesada	(?i)hv mg
 S	597	(?i)obus	(?i)howitzer
 S	601	(?i)canon de defensa aerea pesado	(?i)hv ac
-S	605	(?mente)ametralladora ligera	(?i)light machine gun
+S	605	(?i)ametralladora ligera	(?i)light machine gun
 S	609	(?i)ametralladora ligera	(?i)light mg
 S	611	(?i)ametralladora ligera	(?i)lt machine gun
 S	613	(?i)ametralladora ligera	(?i)lt mg
@@ -5456,7 +5455,6 @@ S	691	(?i)sistema	(?i)system
 S	693	sistema	syst
 S	695	(?i)tactico	(?i)tactical
 S	699	(?i)teletransportador	(?i)teleporter
-S	707	Xraser	(?i)xraser
 C	starfarer_obf.jar	com/fs/starfarer/util/Tesselator$o.class
 S	61	an: %.2f ax: %.2f minX: %.2f minY: %.2f maxX: %.2f maxY: %.2f cx: %.2f cy: %.2f	w: %.2f h: %.2f minX: %.2f minY: %.2f maxX: %.2f maxY: %.2f cx: %.2f cy: %.2f
 C	starfarer_obf.jar	com/fs/starfarer/util/do.class
